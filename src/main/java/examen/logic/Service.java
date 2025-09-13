@@ -44,9 +44,9 @@ public class Service {
         datos.getProyectos().add(proyecto);
     }
 
-    public void crearTarea(String numero, String desc, String fecha, String prio, String estado, User resp) {
+    public void crearTarea(String numero, String desc, String fecha, String prio, String estado, User resp, Proyecto p) {
         Tarea tarea = new Tarea(numero, desc, fecha, prio, estado, resp);
-        datos.getTareas().add(tarea);
+        p.getTareas().add(tarea);
     }
 
     public Proyecto read(Proyecto e) throws Exception {

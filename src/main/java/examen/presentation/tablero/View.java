@@ -83,7 +83,7 @@ public class View implements PropertyChangeListener {
                 if(model.getCurrent() != null && !model.getCurrent().getCodigo().trim().isEmpty()){
                 PanelCrearTareas.setVisible(true);}
                 int[] cols = {TareasTableModel.NUMERO, TareasTableModel.DESCRIPCION, TareasTableModel.VENCE, TareasTableModel.PRIORIDAD, TareasTableModel.ESTADO, TareasTableModel.RESPONSABLE};
-                tareas.setModel(new TareasTableModel(cols,model.getTareas()));
+                tareas.setModel(new TareasTableModel(cols,model.getCurrent().getTareas()));
                 break;
             case Model.PROYECTOS:
                 int[] cols2 = {ProyectosTableModel.CODIGO, ProyectosTableModel.DESCRIPCION, ProyectosTableModel.ENCARGADO, ProyectosTableModel.TAREAS};

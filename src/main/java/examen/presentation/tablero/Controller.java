@@ -28,8 +28,7 @@ public class Controller {
     }
 
     public void crearTarea() {
-        Service.instance().crearTarea(view.getNum(), view.getDescT(), view.getVence(), view.getPrio(), view.getEstado(), view.getSelectedUser());
-        model.getCurrent().getTareas().add(new Tarea(view.getNum(), view.getDescT(), view.getVence(), view.getPrio(), view.getEstado(), view.getSelectedUser()));
+        Service.instance().crearTarea(view.getNum(), view.getDescT(), view.getVence(), view.getPrio(), view.getEstado(), view.getSelectedUser(), model.getCurrent());
     }
 
     public void clear(){
