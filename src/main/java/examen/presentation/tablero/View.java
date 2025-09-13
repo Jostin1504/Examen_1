@@ -4,8 +4,8 @@ import javax.swing.*;
 
 import examen.logic.*;
 import examen.Application;
-import com.github.lgooddatepicker.components.DatePicker;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -24,13 +24,28 @@ public class View implements PropertyChangeListener {
     private JButton crearButton1;
     private JTextField descTareaFld;
     private JTextField textField1;
+    private JComboBox usersTareasComboBox;
+    private JComboBox comboBox2;
+    private JComboBox comboBox3;
+    private JPanel PanelCrearTareas;
 
     public View() {
+        PanelCrearTareas.setVisible(false);
         crearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(validate()){
                     controller.crearProyecto();
+                }
+            }
+        });
+        proyectos.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                int selectedRow = proyectos.getSelectedRow();
+                if (selectedRow >= 0) {
+                    ProyectosTableModel tableModel = (ProyectosTableModel) proyectos.getModel();
+                    Proyecto equipoSeleccionado = tableModel.getRowAt(selectedRow);
+                    model.setCurrent(equipoSeleccionado);
                 }
             }
         });
@@ -51,10 +66,13 @@ public class View implements PropertyChangeListener {
                 llenarComboBox();
                 break;
             case Model.CURRENT:
+                PanelCrearTareas.setVisible(true);
+                int[] cols = {TareasTableModel.NUMERO, TareasTableModel.DESCRIPCION, TareasTableModel.VENCE, TareasTableModel.PRIORIDAD, TareasTableModel.ESTADO, TareasTableModel.RESPONSABLE};
+                tareas.setModel(new TareasTableModel(cols,model.getTareas()));
                 break;
             case Model.PROYECTOS:
-                int[] cols = {ProyectosTableModel.CODIGO, ProyectosTableModel.DESCRIPCION, ProyectosTableModel.ENCARGADO, ProyectosTableModel.TAREAS};
-                proyectos.setModel(new ProyectosTableModel(cols,model.getProyectos()));
+                int[] cols2 = {ProyectosTableModel.CODIGO, ProyectosTableModel.DESCRIPCION, ProyectosTableModel.ENCARGADO, ProyectosTableModel.TAREAS};
+                proyectos.setModel(new ProyectosTableModel(cols2,model.getProyectos()));
         }
         this.mainPanelTablero.revalidate();
     }
@@ -63,6 +81,7 @@ public class View implements PropertyChangeListener {
         if (model == null || model.getUsers() == null) return;
         for (User user : model.getUsers()) {
             usersCombo.addItem(user);
+            usersTareasComboBox.addItem(user);
         }
     }
 

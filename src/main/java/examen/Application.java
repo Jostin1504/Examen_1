@@ -9,6 +9,7 @@ public class Application {
     public static final Color BACKGROUND_ERROR = new Color(255, 102, 102);
 
     public static void main(String[] args) {
+
         JFrame window = new JFrame(" ");
         JTabbedPane tabbedPane = new JTabbedPane();
         window.setContentPane(tabbedPane);
