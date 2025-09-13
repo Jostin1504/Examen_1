@@ -23,20 +23,17 @@ public class Service {
     private void cargarDatos() {
         try {
             File file = new File("data.xml");
-
             if (file.exists()) {
                 JAXBContext context = JAXBContext.newInstance(Data.class);
                 Unmarshaller unmarshaller = context.createUnmarshaller();
                 datos = (Data) unmarshaller.unmarshal(file);
-
             } else {
                 datos = new Data();
-                System.out.println("No se ha encontrado el archivo");
             }
 
         } catch (Exception e) {
+            e.printStackTrace();
             datos = new Data();
-            System.out.println("No se ha encontrado el archivo");
         }
     }
 

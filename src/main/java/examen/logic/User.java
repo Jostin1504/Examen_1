@@ -34,7 +34,7 @@ public class User {
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 
-    public String getNombre() { return name; }
+    public String getName() { return name; }
     public void setNombre(String nombre) { this.name = nombre; }
 
     public String getGanados() { return email; }

@@ -31,20 +31,20 @@ public class Data {
     public List<User> getUsers() {
         return users;
     }
-    public void setUser(List<User> partidos) {this.users = partidos;}
+    public void setUsers(List<User> partidos) {this.users = partidos;}
 
-    public List<Proyecto> getProyectos() {
-        return proyectos;
-    }
-    public void setProyectos(List<Proyecto> equipos) {
-        this.proyectos = equipos;
-    }
+  public List<Proyecto> getProyectos() {
+      return proyectos;
+  }
+  public void setProyectos(List<Proyecto> equipos) {
+      this.proyectos = equipos;
+  }
 
-    public List<Tarea> getTareas() {
-        return tareas;
-    }
-    public void setTareas(List<Tarea> equipos) {
-        this.tareas = equipos;
-    }
+  public List<Tarea> getTareas() {
+      return tareas;
+  }
+  public void setTareas(List<Tarea> equipos) {
+      this.tareas = equipos;
+  }
 
 }

@@ -1,14 +1,14 @@
 package examen.logic;
 
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlID;
+import jakarta.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@XmlRootElement(name = "proyecto")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Proyecto {
 
-    @XmlID
-    @XmlElement
+    @XmlAttribute
     private String codigo;
 
     @XmlElement
@@ -17,10 +17,10 @@ public class Proyecto {
     @XmlElement
     private User responsable;
 
-    @XmlElement
+    @XmlElementWrapper(name = "tareas")
+    @XmlElement(name = "tarea")
     private List<Tarea> tareas;
 
-    // Constructor vacío
     public Proyecto() {
         this.codigo = "";
         this.descripcion = "";
@@ -28,27 +28,44 @@ public class Proyecto {
         this.tareas = new ArrayList<>();
     }
 
-    // Constructor con parámetros
-    public Proyecto(String id, String nombre, User responsable) {
-        this.codigo = id;
-        this.descripcion = nombre;
+    public Proyecto(String codigo, String descripcion, User responsable) {
+        this.codigo = codigo;
+        this.descripcion = descripcion;
         this.responsable = responsable;
-
+        this.tareas = new ArrayList<>();
+    }
+    
+    public String getCodigo() {
+        return codigo;
     }
 
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
 
-    public String getcodigo() { return codigo; }
-    public void setNcodigo(String id) { this.codigo = id; }
+    public String getDescripcion() {
+        return descripcion;
+    }
 
-    public String getDescripcion() { return descripcion; }
-    public void setDescripcion(String nombre) { this.descripcion = nombre; }
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
-    public List<Tarea> getTareas() {return tareas;}
-    public void setTareas(List<Tarea> tareas) {this.tareas = tareas;}
+    public List<Tarea> getTareas() {
+        return tareas;
+    }
 
-    public User getresponsable() { return responsable; }
-    public void setresponsable(User ganados) { this.responsable = ganados; }
+    public void setTareas(List<Tarea> tareas) {
+        this.tareas = tareas;
+    }
 
+    public User getResponsable() {
+        return responsable;
+    }
+
+    public void setResponsable(User responsable) {
+        this.responsable = responsable;
+    }
 
     @Override
     public String toString() {
