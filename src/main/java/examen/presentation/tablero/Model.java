@@ -10,6 +10,7 @@ import java.util.List;
 
 public class Model extends AbstractModel {
     Proyecto current;
+    Tarea tarea;
     List<Proyecto> proyectos;
     List<Tarea> tareas;
     List<User> users;
@@ -17,10 +18,12 @@ public class Model extends AbstractModel {
     public static final String CURRENT = "current";
     public static final String PROYECTOS = "proyectos";
     public static final String TAREAS = "tareas";
+    public static final String TAREA = "tarea";
     public static final String USERS = "users";
 
     public Model(){
         current = new Proyecto();
+        tarea = new Tarea();
         proyectos = new ArrayList<>();
         tareas = new ArrayList<>();
         users = new ArrayList<>();
@@ -32,16 +35,23 @@ public class Model extends AbstractModel {
         firePropertyChange(CURRENT);
         firePropertyChange(PROYECTOS);
         firePropertyChange(TAREAS);
+        firePropertyChange(TAREA);
         firePropertyChange(USERS);
     }
 
     public Proyecto getCurrent() {
         return current;
     }
+    public Tarea getTarea() { return tarea; }
 
     public void setCurrent(Proyecto current) {
         this.current = current;
         firePropertyChange(CURRENT);
+    }
+
+    public void setTarea(Tarea tarea) {
+        this.tarea = tarea;
+        firePropertyChange(TAREA);
     }
 
     public List<Proyecto> getProyectos() {

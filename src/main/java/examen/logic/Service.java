@@ -42,11 +42,13 @@ public class Service {
         List<Tarea> tareas = new ArrayList<>();
         Proyecto proyecto = new Proyecto(c, d, u, tareas);
         datos.getProyectos().add(proyecto);
+        guardarDatos();
     }
 
     public void crearTarea(String numero, String desc, String fecha, String prio, String estado, User resp, Proyecto p) {
         Tarea tarea = new Tarea(numero, desc, fecha, prio, estado, resp);
         p.getTareas().add(tarea);
+        guardarDatos();
     }
 
     public Proyecto read(Proyecto e) throws Exception {

@@ -17,7 +17,6 @@ public class Proyecto {
     @XmlElement
     private User responsable;
 
-    @XmlElementWrapper(name = "tareas")
     @XmlElement(name = "tarea")
     private List<Tarea> tareas;
 

@@ -29,8 +29,10 @@ public class View implements PropertyChangeListener {
     private JPanel PanelCrearTareas;
     private JTextField textField2;
     private JTextField numeroFld;
+    private JButton editarTareaButton;
 
     public View() {
+        editarTareaButton.setVisible(false);
         PanelCrearTareas.setVisible(false);
         crearButton.addActionListener(new ActionListener() {
             @Override
@@ -51,6 +53,16 @@ public class View implements PropertyChangeListener {
                     ProyectosTableModel tableModel = (ProyectosTableModel) proyectos.getModel();
                     Proyecto equipoSeleccionado = tableModel.getRowAt(selectedRow);
                     model.setCurrent(equipoSeleccionado);
+                }
+            }
+        });
+        tareas.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                int selectedRow = tareas.getSelectedRow();
+                if (selectedRow >= 0) {
+                    TareasTableModel tableModel = (TareasTableModel) tareas.getModel();
+                    Tarea equipoSeleccionado = tableModel.getRowAt(selectedRow);
+                    model.setTarea(equipoSeleccionado);
                 }
             }
         });
@@ -85,11 +97,17 @@ public class View implements PropertyChangeListener {
                 int[] cols = {TareasTableModel.NUMERO, TareasTableModel.DESCRIPCION, TareasTableModel.VENCE, TareasTableModel.PRIORIDAD, TareasTableModel.ESTADO, TareasTableModel.RESPONSABLE};
                 tareas.setModel(new TareasTableModel(cols,model.getCurrent().getTareas()));
                 break;
+            case Model.TAREA:
+                if(model.getTarea() != null && !model.getTarea().getNumero().trim().isEmpty()){
+                    editarTareaButton.setVisible(true);}
             case Model.PROYECTOS:
                 int[] cols2 = {ProyectosTableModel.CODIGO, ProyectosTableModel.DESCRIPCION, ProyectosTableModel.ENCARGADO, ProyectosTableModel.TAREAS};
                 proyectos.setModel(new ProyectosTableModel(cols2,model.getProyectos()));
                 break;
                 case Model.TAREAS:
+                    int[] cols4 = {TareasTableModel.NUMERO, TareasTableModel.DESCRIPCION, TareasTableModel.VENCE, TareasTableModel.PRIORIDAD, TareasTableModel.ESTADO, TareasTableModel.RESPONSABLE};
+                    tareas.setModel(new TareasTableModel(cols4,model.getCurrent().getTareas()));
+                    break;
 
         }
         this.mainPanelTablero.revalidate();
@@ -189,7 +207,7 @@ public class View implements PropertyChangeListener {
     public String getCode() {return textField2.getText();}
     public String getNum(){return numeroFld.getText();}
     public String getDescT(){return descTareaFld.getText();}
-    public String getVence(){return estCombo.getSelectedItem().toString();}
+    public String getVence(){return fechaFld.getText();}
     public String getPrio(){return prioCombo.getSelectedItem().toString();}
     public String getEstado(){return estCombo.getSelectedItem().toString();}
     public User getEnc(){return (User) usersTareasComboBox.getSelectedItem();}
