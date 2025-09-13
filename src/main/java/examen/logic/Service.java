@@ -20,6 +20,7 @@ public class Service {
         cargarDatos();
     }
 
+
     private void cargarDatos() {
         try {
             File file = new File("data.xml");
@@ -37,10 +38,22 @@ public class Service {
         }
     }
 
-    public void crearProyecto(String d, User u){
+    public void crearProyecto(String c, String d, User u){
         List<Tarea> tareas = new ArrayList<>();
-        Proyecto proyecto = new Proyecto(" ", d, u, tareas);
+        Proyecto proyecto = new Proyecto(c, d, u, tareas);
         datos.getProyectos().add(proyecto);
+    }
+
+    public void crearTarea(String numero, String desc, String fecha, String prio, String estado, User resp) {
+        Tarea tarea = new Tarea(numero, desc, fecha, prio, estado, resp);
+        datos.getTareas().add(tarea);
+    }
+
+    public Proyecto read(Proyecto e) throws Exception {
+        return datos.getProyectos().stream()
+                .filter(i -> i.getCodigo().equals(e.getCodigo()))
+                .findFirst()
+                .orElseThrow(() -> new Exception("Equipo no existe"));
     }
 
     public void guardarDatos() {

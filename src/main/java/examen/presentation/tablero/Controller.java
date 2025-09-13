@@ -19,13 +19,17 @@ public class Controller {
         view.setModel(model);
         model.addPropertyChangeListener(view);
         model.setUsers(Service.instance().getDatos().getUsers());
-        model.setTareas(Service.instance().getDatos().getTareas());
         model.setProyectos(Service.instance().getDatos().getProyectos());
     }
 
     public void crearProyecto(){
-        Service.instance().crearProyecto(view.getDesc(), view.getSelectedUser());
+        Service.instance().crearProyecto(view.getCode(),view.getDesc(), view.getSelectedUser());
         model.setProyectos(Service.instance().getDatos().getProyectos());
+    }
+
+    public void crearTarea() {
+        Service.instance().crearTarea(view.getNum(), view.getDescT(), view.getVence(), view.getPrio(), view.getEstado(), view.getSelectedUser());
+        model.getCurrent().getTareas().add(new Tarea(view.getNum(), view.getDescT(), view.getVence(), view.getPrio(), view.getEstado(), view.getSelectedUser()));
     }
 
     public void clear(){
@@ -34,9 +38,6 @@ public class Controller {
 
     public List<Proyecto> getProyectos(){
         return Service.instance().getDatos().getProyectos();
-    }
-    public List<Tarea> getTareas(){
-        return Service.instance().getDatos().getTareas();
     }
     public List<User> getUsers(){
         return Service.instance().getDatos().getUsers();

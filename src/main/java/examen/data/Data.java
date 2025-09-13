@@ -18,14 +18,10 @@ public class Data {
     @XmlElement(name = "proyecto")
     private List<Proyecto> proyectos;
 
-    @XmlElementWrapper(name = "tareas")
-    @XmlElement(name = "tarea")
-    private List<Tarea> tareas;
 
     public Data() {
         users = new ArrayList<>();
         proyectos = new ArrayList<>();
-        tareas = new ArrayList<>();
     }
 
     public List<User> getUsers() {
@@ -40,11 +36,5 @@ public class Data {
       this.proyectos = equipos;
   }
 
-  public List<Tarea> getTareas() {
-      return tareas;
-  }
-  public void setTareas(List<Tarea> equipos) {
-      this.tareas = equipos;
-  }
 
 }
