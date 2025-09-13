@@ -23,7 +23,10 @@ public class Controller {
         model.setProyectos(Service.instance().getDatos().getProyectos());
     }
 
-
+    public void crearProyecto(){
+        Service.instance().crearProyecto(view.getDesc(), view.getSelectedUser());
+        model.setProyectos(Service.instance().getDatos().getProyectos());
+    }
 
     public void clear(){
         model.setCurrent(new Proyecto());

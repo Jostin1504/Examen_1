@@ -28,13 +28,13 @@ public class Proyecto {
         this.tareas = new ArrayList<>();
     }
 
-    public Proyecto(String codigo, String descripcion, User responsable) {
+    public Proyecto(String codigo, String descripcion, User responsable, List<Tarea> tareas) {
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.responsable = responsable;
         this.tareas = new ArrayList<>();
     }
-    
+
     public String getCodigo() {
         return codigo;
     }
@@ -53,6 +53,10 @@ public class Proyecto {
 
     public List<Tarea> getTareas() {
         return tareas;
+    }
+
+    public int getNumTareas() {
+        return tareas.size();
     }
 
     public void setTareas(List<Tarea> tareas) {

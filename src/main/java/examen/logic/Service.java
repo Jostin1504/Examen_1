@@ -37,6 +37,12 @@ public class Service {
         }
     }
 
+    public void crearProyecto(String d, User u){
+        List<Tarea> tareas = new ArrayList<>();
+        Proyecto proyecto = new Proyecto(" ", d, u, tareas);
+        datos.getProyectos().add(proyecto);
+    }
+
     public void guardarDatos() {
         try {
             jakarta.xml.bind.JAXBContext context = jakarta.xml.bind.JAXBContext.newInstance(Data.class);
